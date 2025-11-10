@@ -3,9 +3,9 @@ name: SCMS CI Pipeline
 
 on:
   push:
-    branches: [ "*" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "*" ]
+    branches: [ main ]
 
 jobs:
   test:
@@ -50,4 +50,4 @@ jobs:
         mysql -h 127.0.0.1 -u root -proot scms < db/schema.sql
 
     - name: Run tests
-      run: pytest tests.py -v
+      run: pytest -v --cov=db --cov-report=term-missing tests.py
